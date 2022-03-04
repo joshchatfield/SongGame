@@ -63,6 +63,24 @@
     display: none;
 }
 
+.hints-table {
+    width: 100%;
+    background: white;
+    color: black;
+    text-align: center;
+    margin: 0px 0px 10px 0px;
+}
+
+.hints-table th {
+    padding: 15px 10px;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.hints-table td {
+    padding: 15px 10px;
+}
+
 .jc-button {
     margin-bottom: 10px;
     padding: 10px;
@@ -75,25 +93,6 @@
     box-shadow: 0px 0px 3px black;
     width: 100%;
     border: 0px;
-}
-
-.hints-table {
-    width: 100%;
-    background: white;
-    color: black;
-    font-weight: bold;
-    text-align: center;
-    margin: 0px 0px 10px 0px;
-}
-
-.hints-table th {
-    padding: 15px 10px;
-    font-size: 25px;
-}
-
-.hints-table td {
-    padding: 15px 10px;
-    font-size: 14px;
 }
 
 
