@@ -1,0 +1,133 @@
+<html>
+    <meta>
+    <head>
+        <link rel="stylesheet" href="JcStyle.css">
+        <script src="Script.js"></script>
+    </head>
+    <body onload="OnLoad()">
+        <div class="jc-container">
+            <div class="jc-contents">
+                <div class="page-title-container">
+                    <table class="Page-title-table">
+                        <tr>
+                            <th>                                
+                                Songzie                              
+                            </th>
+                            <th>
+                                <span class="jc-button" id="start-new-game-button">
+                                    Start New Game
+                                </span>                               
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Score: <span id="score">100</span>    
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <hr>
+                <div id='song-container'>
+                    <div id="song-title-container">
+                        Song Title: 
+                        <span id="song-title">
+                            Blank
+                        </span>
+                    </div>
+                    <div id="artist-container">
+                        Artist:
+                        <span id="artist">Dave Matthews</span>
+                    </div>
+                    <div id="album-container">
+                        Album:
+                        <span id="album">
+                            Under The Table and Dreaming
+                        </span>
+                    </div>
+                    <div id="release-year-container">
+                        Release year:
+                        <span id="release-year">
+                            1999
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="jc-button" onclick="Guess()" id="guess-button">
+                    Guess
+                </div>
+                <hr>
+                <div id='hints-container'>
+                    <table class="hints-table">
+                        <tr>
+                            <th>                                
+                                Major hints <span>(1 used)</span>                              
+                            </th>
+                            <th>
+                                Minor hints <span>(1 used)</span>                               
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span onclick="ShowArtist()" id="show-artist-button" class="jc-button">
+                                    Artist
+                                </span>
+                            </td>
+                            <td>
+                                <span onclick="ShowCharacters()" id="show-characters-button" class="jc-button">
+                                    Number of characters
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span onclick="ShowRandomizedLetters()" id="show-randomized-letters-button" class="jc-button">
+                                    All letters randomized
+                                </span>
+                            </td>
+                            <td>
+                                <span onclick="ShowNumberOfWords()" id="show-number-of-words-button" class="jc-button">
+                                    Number of words
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span onclick="ShowAlbum()" id="show-album-button" class="jc-button">
+                                    Album
+                                </span>
+                            </td>
+                            <td>
+                                <span onclick="ShowMostLetter()" id="show-most-letter-button" class="jc-button">
+                                    Letter that appears most
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <span onclick="ShowReleaseYear()" id="show-release-year-button" class="jc-button">
+                                    Release year
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div style="height: 30px;">Place a letter <span>(1 placed)</span></div>
+                                <div style="height: 30px;">
+                                    <span class="jc-button" onclick="PlaceA()">A</span>
+                                    <span class="jc-button" onclick="PlaceB()">B</span>
+                                    <span class="jc-button" onclick="PlaceC()">C</span>
+                                    <span class="jc-button" onclick="PlaceD()">D</span>
+                                    <span class="jc-button" onclick="PlaceE()">E</span>
+                                    <span class="jc-button" onclick="PlaceF()">F</span>    
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

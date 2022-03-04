@@ -1,0 +1,246 @@
+:root {
+    --main-bg-color: hsl(200, 100%, 50%);
+    --dark-blue: hsl(200, 100%, 40%);
+    --darker-blue: hsl(200, 100%, 30%);
+    --my-green: green;
+    --my-red: red;
+    --light-red: hsl(0, 100%, 80%);
+    --light-green: hsl(150, 100%, 50%);
+    --gold: hsl(36, 100%, 50%);
+    --grey: hsl(0, 0%, 73%);
+    }
+
+.jc-container {
+    width: 100%;
+}
+
+.jc-contents {
+    text-align: center;
+    margin: 0px auto 20px auto;
+    max-width: 700px;
+    padding: 20px;
+    box-shadow: 0px 0px 3px var(--main-bg-color);
+    border-radius: 5px;
+}
+
+.page-title-table {
+    width: 100%;
+    background: white;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px 0px 10px 0px;
+}
+
+.page-title-table th {
+    padding: 15px 10px;
+    font-size: 50px;
+}
+
+.page-title-table td {
+    padding: 15px 10px;
+    font-size: 20px;
+}
+
+#song-title-container{
+    font-size: 30px;
+    margin: 0px 0px 30px 0px;
+}
+
+.in-line {
+    display: inline;
+}
+
+#artist {
+    display: none;
+}
+
+#album {
+    display: none;
+}
+
+#release-year {
+    display: none;
+}
+
+.jc-button {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: var(--main-bg-color);
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px black;
+    width: 100%;
+    border: 0px;
+}
+
+.hints-table {
+    width: 100%;
+    background: white;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px 0px 10px 0px;
+}
+
+.hints-table th {
+    padding: 15px 10px;
+    font-size: 25px;
+}
+
+.hints-table td {
+    padding: 15px 10px;
+    font-size: 14px;
+}
+
+
+
+
+    .jc-object-header {
+        background: var(--darker-blue);
+        text-align: left;
+        max-width: 100%;
+        margin: 10px;
+        border-radius: 5px;
+        height: 50px;
+    }
+
+    .jc-object-column {
+        white-space: nowrap;
+        border-radius: 5px;
+        display: inline-block;
+        color: white;
+        font-weight: bold;
+        padding: 15px 0px 0px 15px;
+        height: 100%;
+    }
+
+    .jc-flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .jc-plain-object {
+        box-shadow: 0px 0px 3px var(--main-bg-color);
+        margin: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        width: 200px;
+    }
+
+    .jc-plain-object-tag {
+        background: var(--main-bg-color);
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .calendar-heading {
+        background: var(--main-bg-color);
+        color: white;
+        font-size: 25px;
+        align-items: center;
+        height: 50px;
+        font-weight: bold;
+    }
+
+    .jc-object {
+        box-shadow: 0px 0px 3px var(--main-bg-color);
+        margin: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        width: 200px;
+    }
+
+    .jc-object:hover {
+        box-shadow: 0px 0px 10px black;
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+    }
+
+    .jc-grid-row {
+        box-shadow: 0px 0px 3px var(--main-bg-color);
+        border-radius: 5px;
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .jc-grid-label {
+        color: white;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        background: var(--main-bg-color);
+        box-shadow: 0px 0px 3px var(--main-bg-color);
+    }
+
+    .green-link {
+        background: var(--my-green);
+        display: block;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        margin: 5px;
+        padding: 5px;
+        box-shadow: 0px 0px 3px var(--main-bg-color);
+    }
+
+    .red-link {
+        background: var(--my-red);
+        display: block;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .red-link:hover {
+        text-decoration: none;
+        box-shadow: 0px 0px 10px black;
+        color: black;
+    }
+
+    .green-link:hover {
+        text-decoration: none;
+        box-shadow: 0px 0px 10px black;
+        color: black;
+    }
+
+    .jc-red-button {
+        margin-bottom: 10px;
+        padding: 10px;
+        display: block;
+        background: red;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px black;
+        width: 100%;
+        border: 0px;
+    }
+
+    .jc-button:hover {
+        text-decoration: none;
+        background: var(--darker-blue);
+        color: white;
+        cursor: pointer;
+    }
+    .is-clickable {
+        cursor: pointer;
+    }
