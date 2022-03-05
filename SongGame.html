@@ -14,7 +14,10 @@
                                 Songzie                              
                             </th>
                             <th>
-                                <span class="jc-button" id="start-new-game-button">
+                                <span
+                                    class="jc-button"
+                                    id="start-new-game-button"
+                                    onclick="StartNewGame()">
                                     Start New Game
                                 </span>                               
                             </th>
@@ -31,23 +34,25 @@
                     <div id="song-title-container">
                         Song Title: 
                         <span id="song-title">
-                            Blank
+                        </span>
+                    </div>
+                    <div id="randomized-letters-container">
+                        Randomized letters: 
+                        <span id="randomized-letters">
                         </span>
                     </div>
                     <div id="artist-container">
                         Artist:
-                        <span id="artist">Dave Matthews</span>
+                        <span id="artist"></span>
                     </div>
                     <div id="album-container">
                         Album:
                         <span id="album">
-                            Under The Table and Dreaming
                         </span>
                     </div>
                     <div id="release-year-container">
                         Release year:
                         <span id="release-year">
-                            1999
                         </span>
                     </div>
                 </div>
@@ -73,8 +78,8 @@
                                 </span>
                             </td>
                             <td>
-                                <span onclick="ShowCharacters()" id="show-characters-button" class="jc-button">
-                                    Number of characters
+                                <span onclick="ShowReleaseYear()" id="show-release-year-button" class="jc-button">
+                                    Release year
                                 </span>
                             </td>
                         </tr>
@@ -85,8 +90,8 @@
                                 </span>
                             </td>
                             <td>
-                                <span onclick="ShowNumberOfWords()" id="show-number-of-words-button" class="jc-button">
-                                    Number of words
+                                <span onclick="ShowWordStructure()" id="show-word-structure-button" class="jc-button">
+                                    Word structure
                                 </span>
                             </td>
                         </tr>
@@ -99,16 +104,6 @@
                             <td>
                                 <span onclick="ShowMostLetter()" id="show-most-letter-button" class="jc-button">
                                     Letter that appears most
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <span onclick="ShowReleaseYear()" id="show-release-year-button" class="jc-button">
-                                    Release year
                                 </span>
                             </td>
                         </tr>
