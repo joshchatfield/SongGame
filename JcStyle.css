@@ -56,6 +56,8 @@
 
 .song-table td {
     height: 50px;
+    width: 20px;
+    overflow: hidden;
 }
 
 .in-line {

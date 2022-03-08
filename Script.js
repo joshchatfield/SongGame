@@ -5,6 +5,7 @@ var Album = "";
 var ReleaseYear = ""
 var Genre = "";
 var DisplayedSongTitle = "";
+var LetterThatAppearsMost = "";
 SpacesHasBeenClicked = false;
 ShowLetterThatAppearsMostHasBeenClicked = false;
 
@@ -58,11 +59,8 @@ function UpdateDisplayedSongTitle () {
     el.innerHTML = DisplayedSongTitle;
 }
 
-function UpdateSongTitle () {
-    el = document.getElementById("song-title");
-    var html = '<table class = "song-table"><tr>';
-
-    var LetterThatAppearsMost = "";
+function FindLetterThatAppearsMost () {
+    LetterThatAppearsMost = "";
     var BiggestCount = 0;
     for (var i = 0; i < Song.length; i++) {
         var Count = 0;
@@ -76,25 +74,43 @@ function UpdateSongTitle () {
             LetterThatAppearsMost = Song[i];
         }
     }
-    console.log("LetterThatAppearsMost");
-    console.log(LetterThatAppearsMost);
+}
 
-    if (SpacesHasBeenClicked)
+function UpdateSongTitle () {
+    el = document.getElementById("song-title");
+    var html = '<table class = "song-table"><tr>';
+    console.log(ShowLetterThatAppearsMostHasBeenClicked + ' ' + SpacesHasBeenClicked);
+    if (SpacesHasBeenClicked && !ShowLetterThatAppearsMostHasBeenClicked) {
         for (var i = 0; i < Song.length; i++) {
             if(Song[i] == " "){
                 html += '<td style="bottom-border: 1px solid white;"></td>';
             } else {
                 html += '<td style="border-bottom: 1px solid black;"></td>';
+            }
         }
-    } else if (ShowLetterThatAppearsMostHasBeenClicked) {
-        //TODO
-        if(Song[i] == " "){
-            html += '<td style="bottom-border: 1px solid white;"></td>';
-        } else {
-            html += '<td style="border-bottom: 1px solid black;"></td>';
+    } else if (ShowLetterThatAppearsMostHasBeenClicked && !SpacesHasBeenClicked) {
+        for (var i = 0; i < Song.length; i++) {
+            if(Song[i] == LetterThatAppearsMost){
+                html +=
+                '<td style="bottom-border: 1px solid black;">' +
+                LetterThatAppearsMost +
+                '</td>';
+            } else {
+                html += '<td style="border-bottom: 1px solid black;"></td>';
+            }
         }
-    } else if (SpacesHasBeenClicked && ShowLetterThatAppearsMostHasBeenClicked) {
-        //TODO
+    } else if (SpacesHasBeenClicked && ShowLetterThatAppearsMostHasBeenClicked) {        //TODO
+        for (var i = 0; i < Song.length; i++) {
+            if(Song[i] == " ") {
+                html += '<td style="bottom-border: 1px solid white;"></td>';
+            } else if (Song[i] == LetterThatAppearsMost) {
+                html += '<td style="bottom-border: 1px solid black;">' +
+                LetterThatAppearsMost +
+                '</td>';
+            } else {
+                html += '<td style="border-bottom: 1px solid black;"></td>';
+            }
+        }
     }
 
     html += "</tr></table>"
@@ -145,6 +161,7 @@ function InitialSongTitleSetup () {
 function StartNewGame () {
     MapData();
     InitialSongTitleSetup();
+    FindLetterThatAppearsMost();
 }
 
 function OnLoad (){
