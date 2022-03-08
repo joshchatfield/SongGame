@@ -5,9 +5,11 @@ var Album = "";
 var ReleaseYear = ""
 var Genre = "";
 var DisplayedSongTitle = "";
+SpacesHasBeenClicked = false;
+ShowLetterThatAppearsMostHasBeenClicked = false;
 
 function MapData (data) {
-    Song = "Under The Table And Dreaming";
+    Song = "Under The Table and Dreaming";
     Artist = "Dave Matthews";
     Album = "Under The Table And Dreaming";
     ReleaseYear = "1999"
@@ -20,6 +22,16 @@ function Guess () {
 function ShowArtist () {
     var el = document.getElementById("artist");
     el.innerHTML = Artist;
+}
+
+function ShowAlbum () {
+    var el = document.getElementById("album");
+    el.innerHTML = Album;
+}
+
+function ShowReleaseYear () {
+    var el = document.getElementById("release-year");
+    el.innerHTML = ReleaseYear;
 }
 
 function ReplaceCharAtStrIndex (index, char, string) {
@@ -41,26 +53,79 @@ function ShowRandomizedLetters () {
     el.innerHTML = SongTemp;
 }
 
-function ShowAlbum () {
-    var el = document.getElementById("album");
-    el.innerHTML = Album;
-}
-
-function ShowReleaseYear () {
-    var el = document.getElementById("release-year");
-    el.innerHTML = ReleaseYear;
-}
-
 function UpdateDisplayedSongTitle () {
     var el = document.getElementById("song-title");
     el.innerHTML = DisplayedSongTitle;
 }
 
-function ShowWordStructure () {
+function UpdateSongTitle () {
+    el = document.getElementById("song-title");
+    var html = '<table class = "song-table"><tr>';
 
+    var LetterThatAppearsMost = "";
+    var BiggestCount = 0;
+    for (var i = 0; i < Song.length; i++) {
+        var Count = 0;
+        for (var t = 0; t < Song.length; t++) {
+            if (t == i && t != " "){
+                Count++;
+            }
+        }
+        if (Count > BiggestCount) {
+            BiggestCount = Count;
+            LetterThatAppearsMost = Song[i];
+        }
+    }
+    console.log("LetterThatAppearsMost");
+    console.log(LetterThatAppearsMost);
+
+    if (SpacesHasBeenClicked)
+        for (var i = 0; i < Song.length; i++) {
+            if(Song[i] == " "){
+                html += '<td style="bottom-border: 1px solid white;"></td>';
+            } else {
+                html += '<td style="border-bottom: 1px solid black;"></td>';
+        }
+    } else if (ShowLetterThatAppearsMostHasBeenClicked) {
+        //TODO
+        if(Song[i] == " "){
+            html += '<td style="bottom-border: 1px solid white;"></td>';
+        } else {
+            html += '<td style="border-bottom: 1px solid black;"></td>';
+        }
+    } else if (SpacesHasBeenClicked && ShowLetterThatAppearsMostHasBeenClicked) {
+        //TODO
+    }
+
+    html += "</tr></table>"
+    console.log(html);
+    el.innerHTML = html;
 }
 
-function SetupSongTitle () {    
+function ShowLetterThatAppearsMost() {
+    ShowLetterThatAppearsMostHasBeenClicked = true;
+    UpdateSongTitle();
+}
+
+function ShowSpaces () {
+    SpacesHasBeenClicked = true;
+    UpdateSongTitle();
+}
+
+function RevealCompleteSongTitle () {    
+    el = document.getElementById("song-title");
+    var html = '<table class = "song-table"><tr>';
+
+    for (var i = 0; i < Song.length; i++) {
+        html += '<td>' + Song[i] + '</td>';
+    }
+
+    html += "</tr></table>"
+    console.log(html);
+    el.innerHTML = html;
+}
+
+function InitialSongTitleSetup () {    
     if(Song.length > 37){
         //TODO: start new game until length is not > 35
     } else {
@@ -68,7 +133,7 @@ function SetupSongTitle () {
         var html = '<table class = "song-table"><tr>';
 
         for (var i = 0; i < Song.length; i++) {
-            html += '<td>' + Song[i] + '</td>';
+            html += '<td style="border-bottom: 1px solid black;"></td>';
         }
     
         html += "</tr></table>"
@@ -79,7 +144,7 @@ function SetupSongTitle () {
 
 function StartNewGame () {
     MapData();
-    SetupSongTitle();
+    InitialSongTitleSetup();
 }
 
 function OnLoad (){
