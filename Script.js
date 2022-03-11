@@ -59,7 +59,7 @@ function StartNewGame () {
 }
 
 function OnLoad (){
-
+    SetupModal();
 }
 
 function Guess () {
@@ -269,10 +269,10 @@ function FindLetterThatAppearsMost () {
 }
 
 function MapData (data) {
-    Song = "a b";
-    Artist = "Bruce Hornsby";
-    Album = "The Way It Is";
-    ReleaseYear = "1986"
+    Song = "Come Together";
+    Artist = "The Beatles";
+    Album = "Abby Road";
+    ReleaseYear = "1969"
     Genre = "Rock";
 }
 
@@ -284,5 +284,29 @@ function RefreshScore (num) {
         Score += num;
         var el = document.getElementById("score");
         el.innerHTML = Score;
+    }
+}
+
+// modal
+function OpenModal (WhichModal) {
+    if(WhichModal == "Guess"){
+        document.getElementById("Modal").style.display = "block";
+    } else if (WhichModal == "StartNewGame"){
+        document.getElementById("Modal").style.display = "block";
+    }
+}
+
+function SetupModal (){
+
+    // When the user clicks on <span> (x), close the modal
+    document.getElementsByClassName("close")[0].onclick = function() {
+        document.getElementById("Modal").style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("Modal")) {
+            document.getElementById("Modal").style.display = "none";
+        }
     }
 }

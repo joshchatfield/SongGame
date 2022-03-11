@@ -17,7 +17,7 @@
                                 <span
                                     class="jc-button"
                                     id="start-new-game-button"
-                                    onclick="StartNewGame()">
+                                    onclick="OpenModal('StartNewGame')">
                                     Start New Game
                                 </span>                               
                             </th>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <hr>
-                <div class="jc-button" onclick="Guess()" id="guess-button">
+                <div class="jc-button" onclick="OpenModal('Guess')" id="guess-button">
                     Guess
                 </div>
                 <hr>
@@ -145,6 +145,53 @@
                         </tr>
                     </table>
                 </div>
+
+                <!-- The Modal -->
+                <div id="Modal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="close">&times;</div>
+                        
+                        <div id="NewGameContainer">
+                            <div id="NewGameText" class="ModalText">
+                                Pick a Genre and Year
+                            </div>
+                            <div id="NewGamePullDowns">
+                                <!--Genre and Decade pull downs-->
+                                <select id="GenrePulldown">
+                                    <option>Rock</option>
+                                </select>
+                                <select id="DecadePulldown">
+                                    <option>2020</option>
+                                    <option>2010</option>
+                                    <option>2000</option>
+                                    <option>1990</option>
+                                    <option>1980</option>
+                                </select>
+                            </div>
+                            <div id="NewGameButtons">
+                                <div 
+                                    class="jc-button"
+                                    onclick="StartNewGame()">
+                                    Start
+                                </div>
+                                <div 
+                                    class="jc-button"
+                                    onclick="">
+                                    Pick A Song For A Friend
+                                </div>
+                            </div>    
+                        </div>
+
+                        <div id="GuessText"></div>
+                        <div id="GuessButtons">
+                            
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </body>
