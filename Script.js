@@ -14,11 +14,48 @@ var ShowAlbumHasBeenClicked = false;
 var ShowReleaseYearHasBeenClicked = false;
 var LettersAlreadyUsed = [];
 var Score = 100;
+var SongTds = document.getElementsByClassName("song-td");
+
+function InitializeGameVariables(){
+    Song = "";
+    Artist = "";
+    Album = "";
+    ReleaseYear = ""
+    Genre = "";
+    UpperSong = "";
+    LetterThatAppearsMost = "";
+    ShowSpacesHasBeenClicked = false;
+    ShowRandomizedLettersHasBeenClicked = false;
+    ShowLetterThatAppearsMostHasBeenClicked = false;
+    ShowArtistHasBeenClicked = false;
+    ShowAlbumHasBeenClicked = false;
+    ShowReleaseYearHasBeenClicked = false;
+    LettersAlreadyUsed = [];
+    Score = 100;
+    SongTds = document.getElementsByClassName("song-td");
+}
+
+function RestoreScoreDisplay(){
+    document.getElementById("score-td").style.fontSize = "20px";
+    document.getElementById("score-label").innerHTML = "Current Score: ";
+    document.getElementById("score").innerHTML = Score;
+}
+
+function RestoreButtonDisplay(){
+    var Buttons = document.getElementsByClassName("jc-button");
+    for (var i = 0; i < Buttons.length; i++) {
+        Buttons[i].style.background = "hsl(200, 100%, 50%)";
+        Buttons[i].style.color = "white";
+    }
+}
 
 function StartNewGame () {
+    InitializeGameVariables();
     MapData();
     InitialSongTitleSetup();
     FindLetterThatAppearsMost();
+    RestoreScoreDisplay();
+    RestoreButtonDisplay();
 }
 
 function OnLoad (){
@@ -26,11 +63,16 @@ function OnLoad (){
 }
 
 function Guess () {
-    RefreshScore(-3);
+    if(!IsGameOver()){
+        // 
+        RefreshScore(-3);
+        IsGameOver();
+    }
+
 }
 
 function ShowArtist () {
-    if (!ShowArtistHasBeenClicked){
+    if (!ShowArtistHasBeenClicked && !IsGameOver()){
         var el = document.getElementById("artist");
         el.innerHTML = Artist;    
 
@@ -38,12 +80,13 @@ function ShowArtist () {
         el.style.background = "darkgray";
         el.style.color = "lightgray";
         RefreshScore(-20);
+        IsGameOver();
+        ShowArtistHasBeenClicked = true;
     }
-    ShowArtistHasBeenClicked = true;
 }
 
 function ShowAlbum () {
-    if(!ShowAlbumHasBeenClicked){
+    if(!ShowAlbumHasBeenClicked && !IsGameOver()){
         var el = document.getElementById("album");
         el.innerHTML = Album;
 
@@ -51,12 +94,13 @@ function ShowAlbum () {
         el.style.background = "darkgray";
         el.style.color = "lightgray";
         RefreshScore(-20);
+        IsGameOver();
+        ShowAlbumHasBeenClicked = true;
     }
-    ShowAlbumHasBeenClicked = true;
 }
 
 function ShowReleaseYear () {
-    if(!ShowReleaseYearHasBeenClicked){
+    if(!ShowReleaseYearHasBeenClicked && !IsGameOver()){
         var el = document.getElementById("release-year");
         el.innerHTML = ReleaseYear;
 
@@ -64,12 +108,13 @@ function ShowReleaseYear () {
         el.style.background = "darkgray";
         el.style.color = "lightgray";
         RefreshScore(-10);
+        IsGameOver();
+        ShowReleaseYearHasBeenClicked = true;
     }
-    ShowReleaseYearHasBeenClicked = true;
 }
 
 function ShowRandomizedLetters () {
-    if(!ShowRandomizedLettersHasBeenClicked){
+    if(!ShowRandomizedLettersHasBeenClicked && !IsGameOver()){
         var el = document.getElementById("randomized-letters");
         var SongTemp = Song.toUpperCase();
     
@@ -87,13 +132,13 @@ function ShowRandomizedLetters () {
         el.style.background = "darkgray";
         el.style.color = "lightgray";
         RefreshScore(-20);
+        IsGameOver();
+        ShowRandomizedLettersHasBeenClicked = true;
     }
-    ShowRandomizedLettersHasBeenClicked = true;
 }
 
 function ShowLetterThatAppearsMost() {
-    if(!ShowLetterThatAppearsMostHasBeenClicked){
-        var SongTds = document.getElementsByClassName("song-td");
+    if(!ShowLetterThatAppearsMostHasBeenClicked && !IsGameOver()){
         for (var i = 0; i < Song.length; i++) {
             if(Song[i].toUpperCase() == LetterThatAppearsMost.toUpperCase()){
                 SongTds[i].innerHTML = Song[i];
@@ -103,13 +148,13 @@ function ShowLetterThatAppearsMost() {
         el.style.background = "darkgray";
         el.style.color = "lightgray";
         RefreshScore(-10);
+        IsGameOver();
+        ShowLetterThatAppearsMostHasBeenClicked = true;
     }
-    ShowLetterThatAppearsMostHasBeenClicked = true;
 }
 
 function ShowSpaces () {
-    if(!ShowSpacesHasBeenClicked){
-        var SongTds = document.getElementsByClassName("song-td");
+    if(!ShowSpacesHasBeenClicked && !IsGameOver()){
         for (var i = 0; i < Song.length; i++) {
             if(Song[i] == " "){
                 SongTds[i].style.borderBottom = "1px solid white";
@@ -119,8 +164,9 @@ function ShowSpaces () {
         el.style.background = "darkgray";
         el.style.color = "lightgray";
         RefreshScore(-10);
+        IsGameOver();
+        ShowSpacesHasBeenClicked = true;
     }
-    ShowSpacesHasBeenClicked = true;
 }
 
 function PlaceLetter (letter) {
@@ -131,9 +177,7 @@ function PlaceLetter (letter) {
         }
     }
 
-    if (!AlreadyUsed) {
-        console.log("not used yet");
-        var SongTds = document.getElementsByClassName("song-td");
+    if (!AlreadyUsed && !IsGameOver()) {
         for (var i = 0; i < Song.length; i++) {
             if(Song[i].toUpperCase() == letter.toUpperCase()){
                 SongTds[i].innerHTML = Song[i];
@@ -145,10 +189,26 @@ function PlaceLetter (letter) {
         el.style.color = "lightgray";
         LettersAlreadyUsed.push(letter);
         RefreshScore(-5);
+        IsGameOver();
     }
 }
 
 // HELPERS
+
+function IsGameOver () {
+    var IsGameOver = true;
+    for (var i = 0; i < Song.length; i++) {
+        if(SongTds[i].innerHTML == ""){
+            IsGameOver = false;
+        }
+    }
+    if(IsGameOver){
+        console.log("gameover");
+        document.getElementById("score-td").style.fontSize = "60px";
+        document.getElementById("score-label").innerHTML = "Final Score: ";
+    }
+    return IsGameOver;
+}
 
 function ReplaceCharAtStrIndex (index, char, string) {
     return string.substr(0, index) + char + string.substr(index + 1);
@@ -162,9 +222,16 @@ function InitialSongTitleSetup () {
         var html = '<table class = "song-table"><tr>';
 
         for (var i = 0; i < Song.length; i++) {
-            html += 
-            '<td style="border-bottom: 1px solid black;" ' +
-            'class="song-td"></td>';
+            if(Song[i] == " "){
+                html += 
+                '<td style="border-bottom: 1px solid black; color: white;" ' +
+                'class="song-td">_</td>';    
+            } else {
+                html += 
+                '<td style="border-bottom: 1px solid black;" ' +
+                'class="song-td"></td>';
+    
+            }
         }
     
         html += "</tr></table>"
@@ -202,7 +269,7 @@ function FindLetterThatAppearsMost () {
 }
 
 function MapData (data) {
-    Song = "Every Little Kiss";
+    Song = "a b";
     Artist = "Bruce Hornsby";
     Album = "The Way It Is";
     ReleaseYear = "1986"
@@ -210,7 +277,12 @@ function MapData (data) {
 }
 
 function RefreshScore (num) {
-    Score += num;
-    var el = document.getElementById("score");
-    el.innerHTML = Score;
+    if((Score + num) < 0)
+    {
+        console.log("your score is too low for that");
+    } else {
+        Score += num;
+        var el = document.getElementById("score");
+        el.innerHTML = Score;
+    }
 }
