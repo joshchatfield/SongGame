@@ -56,6 +56,7 @@ function StartNewGame () {
     FindLetterThatAppearsMost();
     RestoreScoreDisplay();
     RestoreButtonDisplay();
+    CloseModal();
 }
 
 function OnLoad (){
@@ -64,8 +65,8 @@ function OnLoad (){
 
 function Guess () {
     if(!IsGameOver()){
-        // 
-        RefreshScore(-3);
+        //
+        RefreshScore(-1);
         IsGameOver();
     }
 
@@ -291,9 +292,17 @@ function RefreshScore (num) {
 function OpenModal (WhichModal) {
     if(WhichModal == "Guess"){
         document.getElementById("Modal").style.display = "block";
+        document.getElementById("NewGameContainer").style.display = "none";
+        document.getElementById("GuessContainer").style.display = "block";
     } else if (WhichModal == "StartNewGame"){
         document.getElementById("Modal").style.display = "block";
+        document.getElementById("NewGameContainer").style.display = "block";
+        document.getElementById("GuessContainer").style.display = "none";
     }
+}
+
+function CloseModal () {
+    document.getElementById("Modal").style.display = "none";
 }
 
 function SetupModal (){

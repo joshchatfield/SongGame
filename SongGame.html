@@ -153,16 +153,17 @@
                     <div class="modal-content">
                         <div class="close">&times;</div>
                         
+                        <!--New Game-->
                         <div id="NewGameContainer">
                             <div id="NewGameText" class="ModalText">
-                                Pick a Genre and Year
+                                Pick a Genre and Decade
                             </div>
                             <div id="NewGamePullDowns">
                                 <!--Genre and Decade pull downs-->
-                                <select id="GenrePulldown">
+                                <select id="GenrePulldown" class="ModalData">
                                     <option>Rock</option>
                                 </select>
-                                <select id="DecadePulldown">
+                                <select id="DecadePulldown" class="ModalData">
                                     <option>2020</option>
                                     <option>2010</option>
                                     <option>2000</option>
@@ -184,8 +185,22 @@
                             </div>    
                         </div>
 
-                        <div id="GuessText"></div>
-                        <div id="GuessButtons">
+                        <!--Guess-->
+                        <div id="GuessContainer">
+                            <div id="GuessText" class="ModalText">
+                                Make a Guess
+                            </div>
+                            <div id="GuessInputContainer" class="ModalData">
+                                <Input id="GuessInput">
+                            </div>
+                            <div id="GuessButtons">
+                                <div 
+                                    class="jc-button"
+                                    onclick="Guess()">
+                                    Guess
+                                </div>
+                            </div>
+                        </div>
                             
                         </div>
                     </div>
