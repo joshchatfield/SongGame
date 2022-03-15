@@ -63,59 +63,38 @@ function OnLoad (){
     SetupModal();
 }
 
-function Guess () {
-    if(!IsGameOver()){
-        //
-        RefreshScore(-1);
-        IsGameOver();
-    }
-
-}
-
 function ShowArtist () {
-    if (!ShowArtistHasBeenClicked && !IsGameOver()){
+    if (!ShowArtistHasBeenClicked && 
+        !IsGameOver() &&
+        RefreshScore(-40)){
         var el = document.getElementById("artist");
         el.innerHTML = Artist;    
-
         el = document.getElementById("show-artist-button");
         el.style.background = "darkgray";
         el.style.color = "lightgray";
-        RefreshScore(-20);
-        IsGameOver();
         ShowArtistHasBeenClicked = true;
+        IsGameOver();
     }
 }
 
 function ShowAlbum () {
-    if(!ShowAlbumHasBeenClicked && !IsGameOver()){
+    if(!ShowAlbumHasBeenClicked && 
+        !IsGameOver() &&
+        RefreshScore(-20)){
         var el = document.getElementById("album");
         el.innerHTML = Album;
-
         el = document.getElementById("show-album-button");
         el.style.background = "darkgray";
         el.style.color = "lightgray";
-        RefreshScore(-20);
-        IsGameOver();
         ShowAlbumHasBeenClicked = true;
-    }
-}
-
-function ShowReleaseYear () {
-    if(!ShowReleaseYearHasBeenClicked && !IsGameOver()){
-        var el = document.getElementById("release-year");
-        el.innerHTML = ReleaseYear;
-
-        el = document.getElementById("show-release-year-button");
-        el.style.background = "darkgray";
-        el.style.color = "lightgray";
-        RefreshScore(-10);
         IsGameOver();
-        ShowReleaseYearHasBeenClicked = true;
     }
 }
 
 function ShowRandomizedLetters () {
-    if(!ShowRandomizedLettersHasBeenClicked && !IsGameOver()){
+    if(!ShowRandomizedLettersHasBeenClicked && 
+        !IsGameOver() &&
+        RefreshScore(-20)){
         var el = document.getElementById("randomized-letters");
         var SongTemp = Song.toUpperCase();
     
@@ -132,14 +111,29 @@ function ShowRandomizedLetters () {
         el = document.getElementById("show-randomized-letters-button");
         el.style.background = "darkgray";
         el.style.color = "lightgray";
-        RefreshScore(-20);
-        IsGameOver();
         ShowRandomizedLettersHasBeenClicked = true;
+        IsGameOver();
+    }
+}
+
+function ShowReleaseYear () {
+    if(!ShowReleaseYearHasBeenClicked && 
+        !IsGameOver() &&
+        RefreshScore(-10)){
+        var el = document.getElementById("release-year");
+        el.innerHTML = ReleaseYear;
+        el = document.getElementById("show-release-year-button");
+        el.style.background = "darkgray";
+        el.style.color = "lightgray";
+        ShowReleaseYearHasBeenClicked = true;
+        IsGameOver();
     }
 }
 
 function ShowLetterThatAppearsMost() {
-    if(!ShowLetterThatAppearsMostHasBeenClicked && !IsGameOver()){
+    if(!ShowLetterThatAppearsMostHasBeenClicked && 
+        !IsGameOver() &&
+        RefreshScore(-10)){
         for (var i = 0; i < Song.length; i++) {
             if(Song[i].toUpperCase() == LetterThatAppearsMost.toUpperCase()){
                 SongTds[i].innerHTML = Song[i];
@@ -148,14 +142,15 @@ function ShowLetterThatAppearsMost() {
         el = document.getElementById("show-letter-that-appears-most-button");
         el.style.background = "darkgray";
         el.style.color = "lightgray";
-        RefreshScore(-10);
-        IsGameOver();
         ShowLetterThatAppearsMostHasBeenClicked = true;
+        IsGameOver();
     }
 }
 
 function ShowSpaces () {
-    if(!ShowSpacesHasBeenClicked && !IsGameOver()){
+    if(!ShowSpacesHasBeenClicked && 
+        !IsGameOver() &&
+        RefreshScore(-10)){
         for (var i = 0; i < Song.length; i++) {
             if(Song[i] == " "){
                 SongTds[i].style.borderBottom = "1px solid white";
@@ -164,9 +159,8 @@ function ShowSpaces () {
         el = document.getElementById("show-spaces-button");
         el.style.background = "darkgray";
         el.style.color = "lightgray";
-        RefreshScore(-10);
-        IsGameOver();
         ShowSpacesHasBeenClicked = true;
+        IsGameOver();
     }
 }
 
@@ -178,7 +172,9 @@ function PlaceLetter (letter) {
         }
     }
 
-    if (!AlreadyUsed && !IsGameOver()) {
+    if (!AlreadyUsed && 
+        !IsGameOver() &&
+        RefreshScore(-5)) {
         for (var i = 0; i < Song.length; i++) {
             if(Song[i].toUpperCase() == letter.toUpperCase()){
                 SongTds[i].innerHTML = Song[i];
@@ -194,17 +190,34 @@ function PlaceLetter (letter) {
     }
 }
 
+function Guess () {
+    if(!IsGameOver() &&
+        RefreshScore(-1)){
+        //
+        var guess = document.getElementById("GuessInput").value;
+        if (guess == Song) {
+            IsGameOver(true);
+        } else {
+            IsGameOver();
+        }
+        CloseModal();
+    }
+
+}
+
 // HELPERS
 
-function IsGameOver () {
+function IsGameOver (forceGameOver) {
     var IsGameOver = true;
-    for (var i = 0; i < Song.length; i++) {
-        if(SongTds[i].innerHTML == ""){
-            IsGameOver = false;
+    if(!forceGameOver){
+        for (var i = 0; i < Song.length; i++) {
+            if(SongTds[i].innerHTML == ""){
+                IsGameOver = false;
+            }
         }
     }
     if(IsGameOver){
-        console.log("gameover");
+        //TODO: disable all buttons except new game
         document.getElementById("score-td").style.fontSize = "60px";
         document.getElementById("score-label").innerHTML = "Final Score: ";
     }
@@ -217,7 +230,7 @@ function ReplaceCharAtStrIndex (index, char, string) {
 
 function InitialSongTitleSetup () {    
     if(Song.length > 37){
-        //TODO: start new game until length is not > 35
+        //TODO: start new game until length is <= 37
     } else {
         el = document.getElementById("song-title");
         var html = '<table class = "song-table"><tr>';
@@ -280,24 +293,39 @@ function MapData (data) {
 function RefreshScore (num) {
     if((Score + num) < 0)
     {
-        console.log("your score is too low for that");
+        OpenModal("Notification");
+        return false;
     } else {
         Score += num;
         var el = document.getElementById("score");
         el.innerHTML = Score;
+        return true;
     }
 }
 
 // modal
 function OpenModal (WhichModal) {
     if(WhichModal == "Guess"){
-        document.getElementById("Modal").style.display = "block";
-        document.getElementById("NewGameContainer").style.display = "none";
-        document.getElementById("GuessContainer").style.display = "block";
+        if(!IsGameOver()){
+            if(Score < 1){
+                OpenModal("Notification");
+            } else {
+                document.getElementById("Modal").style.display = "block";
+                document.getElementById("NewGameContainer").style.display = "none";
+                document.getElementById("GuessContainer").style.display = "block";
+                document.getElementById("NotificationContainer").style.display = "none";
+            }
+        }
     } else if (WhichModal == "StartNewGame"){
         document.getElementById("Modal").style.display = "block";
         document.getElementById("NewGameContainer").style.display = "block";
         document.getElementById("GuessContainer").style.display = "none";
+        document.getElementById("NotificationContainer").style.display = "none";
+    } else if (WhichModal == "Notification"){
+        document.getElementById("Modal").style.display = "block";
+        document.getElementById("NewGameContainer").style.display = "none";
+        document.getElementById("GuessContainer").style.display = "none";
+        document.getElementById("NotificationContainer").style.display = "block";
     }
 }
 

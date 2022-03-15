@@ -75,42 +75,42 @@
                         <tr>
                             <td>
                                 <span onclick="ShowArtist()" id="show-artist-button" class="jc-button">
-                                    Artist
+                                    Artist (40pts)
                                 </span>
                             </td>
                             <td>
                                 <span onclick="ShowReleaseYear()" id="show-release-year-button" class="jc-button">
-                                    Release year
+                                    Release year (10pts)
                                 </span>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <span onclick="ShowRandomizedLetters()" id="show-randomized-letters-button" class="jc-button">
-                                    All letters randomized
+                                    All letters randomized (20pts)
                                 </span>
                             </td>
                             <td>
                                 <span onclick="ShowSpaces()" id="show-spaces-button" class="jc-button">
-                                    Spaces
+                                    Spaces (10pts)
                                 </span>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <span onclick="ShowAlbum()" id="show-album-button" class="jc-button">
-                                    Album
+                                    Album (20pts)
                                 </span>
                             </td>
                             <td>
                                 <span onclick="ShowLetterThatAppearsMost()" id="show-letter-that-appears-most-button" class="jc-button">
-                                    Letter that appears most
+                                    Letter that appears most (10pts)
                                 </span>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <div style="margin: 30px;">Place a letter</div>
+                                <div style="margin: 30px;">Place a letter (5pts)</div>
                                 <div style="margin: 30px;">
                                     <span class="jc-button" onclick="PlaceLetter('A')" id="AButton">A</span>
                                     <span class="jc-button" onclick="PlaceLetter('B')" id="BButton">B</span>
@@ -198,6 +198,20 @@
                                     class="jc-button"
                                     onclick="Guess()">
                                     Guess
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Guess-->
+                        <div id="NotificationContainer">
+                            <div id="NotificationText" class="ModalText">
+                                Your score is too low for that!
+                            </div>                            
+                            <div id="NotificationButtons">
+                                <div 
+                                    class="jc-button"
+                                    onclick="CloseModal()">
+                                    Dismiss
                                 </div>
                             </div>
                         </div>
