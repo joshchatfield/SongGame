@@ -35,27 +35,14 @@ function InitializeGameVariables(){
     SongTds = document.getElementsByClassName("song-td");
 }
 
-function RestoreScoreDisplay(){
-    document.getElementById("score-td").style.fontSize = "20px";
-    document.getElementById("score-label").innerHTML = "Current Score: ";
-    document.getElementById("score").innerHTML = Score;
-}
-
-function RestoreButtonDisplay(){
-    var Buttons = document.getElementsByClassName("jc-button");
-    for (var i = 0; i < Buttons.length; i++) {
-        Buttons[i].style.background = "hsl(200, 100%, 50%)";
-        Buttons[i].style.color = "white";
-    }
-}
-
 function StartNewGame () {
     InitializeGameVariables();
-    MapData();
+    MapData(Songs);
     InitialSongTitleSetup();
     FindLetterThatAppearsMost();
     RestoreScoreDisplay();
     RestoreButtonDisplay();
+    RestoreHintsDisplay();
     CloseModal();
 }
 
@@ -206,7 +193,7 @@ function Guess () {
     if(!IsGameOver() &&
         RefreshScore(-1)){
         var guess = document.getElementById("GuessInput").value;
-        if (guess == Song) {
+        if (guess.toUpperCase() == Song.toLocaleUpperCase()) {
             RevealCompleteSongTitle();
             IsGameOver(true);
         } else {
@@ -217,6 +204,27 @@ function Guess () {
 }
 
 // HELPERS
+
+function RestoreScoreDisplay(){
+    document.getElementById("score-td").style.fontSize = "20px";
+    document.getElementById("score-label").innerHTML = "Current Score: ";
+    document.getElementById("score").innerHTML = Score;
+}
+
+function RestoreButtonDisplay(){
+    var Buttons = document.getElementsByClassName("jc-button");
+    for (var i = 0; i < Buttons.length; i++) {
+        Buttons[i].style.background = "hsl(200, 100%, 50%)";
+        Buttons[i].style.color = "white";
+    }
+}
+
+function RestoreHintsDisplay () {
+    document.getElementById("artist").innerHTML = "";
+    document.getElementById("album").innerHTML = "";
+    document.getElementById("randomized-letters").innerHTML = "";
+    document.getElementById("release-year").innerHTML = "";
+}
 
 function IsGameOver (forceGameOver) {
     var IsGameOver = true;
@@ -233,7 +241,9 @@ function IsGameOver (forceGameOver) {
         document.getElementById("score-label").innerHTML = "Final Score: ";
     }
     if (Score == 0){
-        //TODO: signify game over
+        GrayOutAllButtonsExceptNewGame();
+        document.getElementById("score-td").style.fontSize = "40px";
+        document.getElementById("score-label").innerHTML = "Game Over, Final Score: ";
     }
     return IsGameOver;
 }
@@ -244,7 +254,7 @@ function ReplaceCharAtStrIndex (index, char, string) {
 
 function InitialSongTitleSetup () {    
     if(Song.length > 37){
-        //TODO: start new game until length is <= 37
+        StartNewGame();
     } else {
         el = document.getElementById("song-title");
         var html = '<table class = "song-table"><tr>';
@@ -254,14 +264,37 @@ function InitialSongTitleSetup () {
                 html += 
                 '<td style="border-bottom: 1px solid black; color: white;" ' +
                 'class="song-td">_</td>';    
+            } else if (Song[i] == "!") {
+                html += 
+                '<td style="border-bottom: 1px solid black;" ' +
+                'class="song-td">' + Song[i] +
+                '</td>';    
+            } else if (Song[i] == "?") {
+                html += 
+                '<td style="border-bottom: 1px solid black;" ' +
+                'class="song-td">' + Song[i] +
+                '</td>';    
+            } else if (Song[i] == "'") {
+                html += 
+                '<td style="border-bottom: 1px solid black;" ' +
+                'class="song-td">' + Song[i] +
+                '</td>';    
+            } else if (Song[i] == ",") {
+                html += 
+                '<td style="border-bottom: 1px solid black;" ' +
+                'class="song-td">' + Song[i] +
+                '</td>';    
+            } else if (Song[i] == ".") {
+                html += 
+                '<td style="border-bottom: 1px solid black;" ' +
+                'class="song-td">' + Song[i] +
+                '</td>';    
             } else {
                 html += 
                 '<td style="border-bottom: 1px solid black;" ' +
-                'class="song-td"></td>';
-    
+                'class="song-td"></td>';    
             }
         }
-    
         html += "</tr></table>"
         el.innerHTML = html;
     }
@@ -297,11 +330,16 @@ function FindLetterThatAppearsMost () {
 }
 
 function MapData (data) {
-    Song = "Come Together";
-    Artist = "The Beatles";
-    Album = "Abby Road";
-    ReleaseYear = "1969"
-    Genre = "Rock";
+    var rand = Math.floor(Math.random() * 5);
+    var currentSong = data[rand];
+
+    console.dir(currentSong);
+
+    Song = currentSong.Song;
+    Artist = currentSong.Artist;
+    Album = currentSong.Album;
+    ReleaseYear = currentSong.ReleaseYear;
+    Genre = currentSong.Genre;
 }
 
 function RefreshScore (num) {
@@ -361,3 +399,43 @@ function SetupModal (){
         }
     }
 }
+
+var Songs = [
+    {
+        "Song": "Come Together",
+        "Artist": "The Beatles",
+        "Album": "Abbey Road",
+        "ReleaseYear": "1969",
+        "Genre": "Rock"
+    },{
+        "Song": "Peace Train",
+        "Artist": "Cat Stevens",
+        "Album": "Teaser and the Firecat",
+        "ReleaseYear": "1971",
+        "Genre": "Rock"
+    },{
+        "Song": "Tonight Tonight",
+        "Artist": "Smashing Pumkins",
+        "Album": "Mellon Collie and the Infinite Sadness",
+        "ReleaseYear": "1996",
+        "Genre": "Rock"
+    },{
+        "Song": "Say It Ain't So",
+        "Artist": "Weezer",
+        "Album": "Weezer",
+        "ReleaseYear": "1994",
+        "Genre": "Rock"
+    },{
+        "Song": "Comfortably Numb",
+        "Artist": "Pink Floyd",
+        "Album": "The Wall",
+        "ReleaseYear": "1979",
+        "Genre": "Rock"
+    },{
+        "Song": "Crash Into Me",
+        "Artist": "Dave Matthews",
+        "Album": "Crash",
+        "ReleaseYear": "1996",
+        "Genre": "Rock"
+    }
+]
