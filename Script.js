@@ -93,7 +93,12 @@ function ShowRandomizedLetters () {
             SongTemp = ReplaceCharAtStrIndex(i, temp2, SongTemp);
             SongTemp = ReplaceCharAtStrIndex(random, temp1, SongTemp);
         }
-        el.innerHTML = SongTemp;
+        for (var i = 0; i < SongTemp.length; i++){
+            if(SongTemp[i] == " ") {
+                SongTemp = RemoveCharAtStrIndex(i, SongTemp);
+            }
+        }
+        el.innerHTML = SanitizeString(SongTemp);
 
         el = document.getElementById("show-randomized-letters-button");
         el.style.background = "darkgray";
@@ -193,7 +198,8 @@ function Guess () {
     if(!IsGameOver() &&
         RefreshScore(-1)){
         var guess = document.getElementById("GuessInput").value;
-        if (guess.toUpperCase() == Song.toLocaleUpperCase()) {
+
+        if (SanitizeString(guess) == SanitizeString(Song)) {
             RevealCompleteSongTitle();
             IsGameOver(true);
         } else {
@@ -252,6 +258,26 @@ function ReplaceCharAtStrIndex (index, char, string) {
     return string.substr(0, index) + char + string.substr(index + 1);
 }
 
+function RemoveCharAtStrIndex (index, string) {
+    return string.substr(0, index) + string.substr(index + 1);
+}
+
+function SanitizeString (str) {
+    var result = str.toUpperCase();
+    for(var i = 0; i < result.length; i++) {
+        if(result[i] == "?" ||
+        result[i] == "!" ||
+        result[i] == "," ||
+        result[i] == "." ||
+        result[i] == "'" ||
+        result[i] == '"'
+        ) {
+            result = RemoveCharAtStrIndex(i, result);
+        }
+    }
+    return result;
+}
+
 function InitialSongTitleSetup () {    
     if(Song.length > 37){
         StartNewGame();
@@ -264,27 +290,14 @@ function InitialSongTitleSetup () {
                 html += 
                 '<td style="border-bottom: 1px solid black; color: white;" ' +
                 'class="song-td">_</td>';    
-            } else if (Song[i] == "!") {
-                html += 
-                '<td style="border-bottom: 1px solid black;" ' +
-                'class="song-td">' + Song[i] +
-                '</td>';    
-            } else if (Song[i] == "?") {
-                html += 
-                '<td style="border-bottom: 1px solid black;" ' +
-                'class="song-td">' + Song[i] +
-                '</td>';    
-            } else if (Song[i] == "'") {
-                html += 
-                '<td style="border-bottom: 1px solid black;" ' +
-                'class="song-td">' + Song[i] +
-                '</td>';    
-            } else if (Song[i] == ",") {
-                html += 
-                '<td style="border-bottom: 1px solid black;" ' +
-                'class="song-td">' + Song[i] +
-                '</td>';    
-            } else if (Song[i] == ".") {
+            } else if (
+                Song[i] == "!" ||
+                Song[i] == "?" ||
+                Song[i] == "." ||
+                Song[i] == "," ||
+                Song[i] == "'" ||
+                Song[i] == '"'
+                ) {
                 html += 
                 '<td style="border-bottom: 1px solid black;" ' +
                 'class="song-td">' + Song[i] +
@@ -332,8 +345,6 @@ function FindLetterThatAppearsMost () {
 function MapData (data) {
     var rand = Math.floor(Math.random() * 5);
     var currentSong = data[rand];
-
-    console.dir(currentSong);
 
     Song = currentSong.Song;
     Artist = currentSong.Artist;
@@ -402,19 +413,19 @@ function SetupModal (){
 
 var Songs = [
     {
-        "Song": "Come Together",
+        "Song": "Come Together!",
         "Artist": "The Beatles",
         "Album": "Abbey Road",
         "ReleaseYear": "1969",
         "Genre": "Rock"
     },{
-        "Song": "Peace Train",
+        "Song": "Peace Train...",
         "Artist": "Cat Stevens",
         "Album": "Teaser and the Firecat",
         "ReleaseYear": "1971",
         "Genre": "Rock"
     },{
-        "Song": "Tonight Tonight",
+        "Song": "Tonight, Tonight",
         "Artist": "Smashing Pumkins",
         "Album": "Mellon Collie and the Infinite Sadness",
         "ReleaseYear": "1996",
@@ -426,13 +437,13 @@ var Songs = [
         "ReleaseYear": "1994",
         "Genre": "Rock"
     },{
-        "Song": "Comfortably Numb",
+        "Song": "Comfortably Numb?",
         "Artist": "Pink Floyd",
         "Album": "The Wall",
         "ReleaseYear": "1979",
         "Genre": "Rock"
     },{
-        "Song": "Crash Into Me",
+        "Song": "Crash Into Me.",
         "Artist": "Dave Matthews",
         "Album": "Crash",
         "ReleaseYear": "1996",
