@@ -93,13 +93,10 @@ function ShowRandomizedLetters () {
             SongTemp = ReplaceCharAtStrIndex(i, temp2, SongTemp);
             SongTemp = ReplaceCharAtStrIndex(random, temp1, SongTemp);
         }
-        for (var i = 0; i < SongTemp.length; i++){
-            if(SongTemp[i] == " ") {
-                SongTemp = RemoveCharAtStrIndex(i, SongTemp);
-            }
-        }
-        el.innerHTML = SanitizeString(SongTemp);
+        SongTemp = SongTemp.replaceAll(' ', '');
+        SongTemp = SanitizeString(SongTemp)
 
+        el.innerHTML = SongTemp;
         el = document.getElementById("show-randomized-letters-button");
         el.style.background = "darkgray";
         el.style.color = "lightgray";
@@ -258,24 +255,15 @@ function ReplaceCharAtStrIndex (index, char, string) {
     return string.substr(0, index) + char + string.substr(index + 1);
 }
 
-function RemoveCharAtStrIndex (index, string) {
-    return string.substr(0, index) + string.substr(index + 1);
-}
-
 function SanitizeString (str) {
-    var result = str.toUpperCase();
-    for(var i = 0; i < result.length; i++) {
-        if(result[i] == "?" ||
-        result[i] == "!" ||
-        result[i] == "," ||
-        result[i] == "." ||
-        result[i] == "'" ||
-        result[i] == '"'
-        ) {
-            result = RemoveCharAtStrIndex(i, result);
-        }
-    }
-    return result;
+    str = str.replaceAll('!','');
+    str = str.replaceAll('?','');
+    str = str.replaceAll('.','');
+    str = str.replaceAll(',','');
+    str = str.replaceAll('"','');
+    str = str.replaceAll("'",'');
+    str = str.toUpperCase();
+    return str;
 }
 
 function InitialSongTitleSetup () {    
@@ -346,7 +334,8 @@ function MapData (data) {
     var rand = Math.floor(Math.random() * 5);
     var currentSong = data[rand];
 
-    Song = currentSong.Song;
+    Song = "a,a,a,a,a!";
+    console.log(Song);
     Artist = currentSong.Artist;
     Album = currentSong.Album;
     ReleaseYear = currentSong.ReleaseYear;
