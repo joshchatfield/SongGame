@@ -185,24 +185,35 @@ function PlaceLetter (letter) {
         el.style.background = "darkgray";
         el.style.color = "lightgray";
         LettersAlreadyUsed.push(letter);
-        RefreshScore(-5);
         IsGameOver();
+    }
+}
+
+function GrayOutAllButtonsExceptNewGame(){
+    var buttons = document.getElementsByClassName("jc-button");
+    for (var i = 0; i < buttons.length; i++) {
+        if(buttons[i].id != "start-new-game-button" &&
+        buttons[i].id != "start-button" &&
+        buttons[i].id != "pick-a-song-for-a-friend-button"
+        ){
+            buttons[i].style.background = "darkgray";
+            buttons[i].style.color = "lightgray";
+        }
     }
 }
 
 function Guess () {
     if(!IsGameOver() &&
         RefreshScore(-1)){
-        //
         var guess = document.getElementById("GuessInput").value;
         if (guess == Song) {
+            RevealCompleteSongTitle();
             IsGameOver(true);
         } else {
             IsGameOver();
         }
         CloseModal();
     }
-
 }
 
 // HELPERS
@@ -217,9 +228,12 @@ function IsGameOver (forceGameOver) {
         }
     }
     if(IsGameOver){
-        //TODO: disable all buttons except new game
+        GrayOutAllButtonsExceptNewGame();
         document.getElementById("score-td").style.fontSize = "60px";
         document.getElementById("score-label").innerHTML = "Final Score: ";
+    }
+    if (Score == 0){
+        //TODO: signify game over
     }
     return IsGameOver;
 }
@@ -258,7 +272,7 @@ function RevealCompleteSongTitle () {
     var html = '<table class = "song-table"><tr>';
 
     for (var i = 0; i < Song.length; i++) {
-        html += '<td>' + Song[i] + '</td>';
+        html += '<td class="song-td">' + Song[i] + '</td>';
     }
 
     html += "</tr></table>"
