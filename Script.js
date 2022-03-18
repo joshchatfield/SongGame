@@ -15,6 +15,7 @@ var ShowReleaseYearHasBeenClicked = false;
 var LettersAlreadyUsed = [];
 var Score = 100;
 var SongTds = document.getElementsByClassName("song-td");
+var MapDataCount = 0;
 
 function InitializeGameVariables(){
     Song = "";
@@ -33,21 +34,24 @@ function InitializeGameVariables(){
     LettersAlreadyUsed = [];
     Score = 100;
     SongTds = document.getElementsByClassName("song-td");
+    MapDataCount = 0;
 }
 
 function StartNewGame () {
     InitializeGameVariables();
-    MapData(Songs);
-    InitialSongTitleSetup();
-    FindLetterThatAppearsMost();
-    RestoreScoreDisplay();
-    RestoreButtonDisplay();
-    RestoreHintsDisplay();
-    CloseModal();
+    if(MapData(Songs)){
+        InitialSongTitleSetup();
+        FindLetterThatAppearsMost();
+        RestoreScoreDisplay();
+        RestoreButtonDisplay();
+        RestoreHintsDisplay();
+    }
+    CloseModal();    
 }
 
 function OnLoad (){
     SetupModal();
+    GrayOutAllButtonsExceptNewGame();
 }
 
 function ShowArtist () {
@@ -331,15 +335,45 @@ function FindLetterThatAppearsMost () {
 }
 
 function MapData (data) {
-    var rand = Math.floor(Math.random() * 5);
+    var rand = Math.floor(Math.random() * (data.length - 1));
     var currentSong = data[rand];
 
-    Song = "a,a,a,a,a!";
-    console.log(Song);
-    Artist = currentSong.Artist;
-    Album = currentSong.Album;
-    ReleaseYear = currentSong.ReleaseYear;
-    Genre = currentSong.Genre;
+    var decade = 1900;
+            if (currentSong.ReleaseYear >= 2020 && currentSong.ReleaseYear < 2030) {
+        decade = 2020;
+    } else if (currentSong.ReleaseYear >= 2010 && currentSong.ReleaseYear < 2020) {
+        decade = 2010;
+    } else if (currentSong.ReleaseYear >= 2000 && currentSong.ReleaseYear < 2010) {
+        decade = 2000;
+    } else if (currentSong.ReleaseYear >= 1990 && currentSong.ReleaseYear < 2000) {
+        decade = 1990;
+    } else if (currentSong.ReleaseYear >= 1980 && currentSong.ReleaseYear < 1990) {
+        decade = 1980;
+    } else if (currentSong.ReleaseYear >= 1970 && currentSong.ReleaseYear < 1980) {
+        decade = 1970;
+    } else if (currentSong.ReleaseYear >= 1960 && currentSong.ReleaseYear < 1970) {
+        decade = 1960;
+    }
+
+    if(
+        decade != document.getElementById("DecadePulldown").value ||
+        currentSong.Genre != document.getElementById("GenrePulldown").value        
+    ) {
+        MapDataCount++;
+        if(MapDataCount > data.length) {
+            console.log("can't find song for specified genre and release year");
+            return false;
+        } else {
+            return MapData(data);
+        }
+    } else {
+        Song = currentSong.Song;
+        Artist = currentSong.Artist;
+        Album = currentSong.Album;
+        ReleaseYear = currentSong.ReleaseYear;
+        Genre = currentSong.Genre;    
+        return true;
+    }
 }
 
 function RefreshScore (num) {
@@ -402,19 +436,19 @@ function SetupModal (){
 
 var Songs = [
     {
-        "Song": "Come Together!",
+        "Song": "Come Together",
         "Artist": "The Beatles",
         "Album": "Abbey Road",
         "ReleaseYear": "1969",
         "Genre": "Rock"
     },{
-        "Song": "Peace Train...",
+        "Song": "Peace Train",
         "Artist": "Cat Stevens",
         "Album": "Teaser and the Firecat",
         "ReleaseYear": "1971",
         "Genre": "Rock"
     },{
-        "Song": "Tonight, Tonight",
+        "Song": "Tonight Tonight",
         "Artist": "Smashing Pumkins",
         "Album": "Mellon Collie and the Infinite Sadness",
         "ReleaseYear": "1996",
@@ -426,16 +460,28 @@ var Songs = [
         "ReleaseYear": "1994",
         "Genre": "Rock"
     },{
-        "Song": "Comfortably Numb?",
+        "Song": "Comfortably Numb",
         "Artist": "Pink Floyd",
         "Album": "The Wall",
         "ReleaseYear": "1979",
         "Genre": "Rock"
     },{
-        "Song": "Crash Into Me.",
+        "Song": "Crash Into Me",
         "Artist": "Dave Matthews",
         "Album": "Crash",
         "ReleaseYear": "1996",
+        "Genre": "Rock"
+    },{
+        "Song": "Ironic",
+        "Artist": "Alanis Morissette",
+        "Album": "Jagged Little Pill",
+        "ReleaseYear": "1996",
+        "Genre": "Rock"
+    },{
+        "Song": "Yellow Ledbetter",
+        "Artist": "Pearl Jam",
+        "Album": "Ten",
+        "ReleaseYear": "1991",
         "Genre": "Rock"
     }
 ]
