@@ -146,7 +146,7 @@ function ShowSpaces () {
         RefreshScore(-10)){
         for (var i = 0; i < Song.length; i++) {
             if(Song[i] == " "){
-                SongTds[i].style.borderBottom = "1px solid white";
+                SongTds[i].style.border = "1px solid white";
             }
         }
         el = document.getElementById("show-spaces-button");
@@ -280,7 +280,7 @@ function InitialSongTitleSetup () {
         for (var i = 0; i < Song.length; i++) {
             if(Song[i] == " "){
                 html += 
-                '<td style="border-bottom: 1px solid black; color: white;" ' +
+                '<td style="border: 2px solid black; color: white;" ' +
                 'class="song-td">_</td>';    
             } else if (
                 Song[i] == "!" ||
@@ -296,7 +296,7 @@ function InitialSongTitleSetup () {
                 '</td>';    
             } else {
                 html += 
-                '<td style="border-bottom: 1px solid black;" ' +
+                '<td style="border: 2px solid black;" ' +
                 'class="song-td"></td>';    
             }
         }
