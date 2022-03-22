@@ -335,7 +335,7 @@ function InitialSongTitleSetup () {
                 Song[i] == '"'
                 ) {
                 html += 
-                '<td style="border-bottom: 1px solid black;" ' +
+                '<td style="border: 2px solid white;" ' +
                 'class="song-td">' + Song[i] +
                 '</td>';    
             } else {
