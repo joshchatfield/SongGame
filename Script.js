@@ -52,6 +52,7 @@ function StartNewGame () {
 function OnLoad (){
     SetupModal();
     GrayOutAllButtonsExceptNewGame();
+    SongTitleOnLoad();
 }
 
 function ShowArtist () {
@@ -303,6 +304,22 @@ function InitialSongTitleSetup () {
         html += "</tr></table>"
         el.innerHTML = html;
     }
+}
+
+function SongTitleOnLoad () {    
+    el = document.getElementById("song-title");
+    var html = '<table class = "song-table"><tr>';
+    var onloadtitle = "Songzie"
+
+    for (var i = 0; i < onloadtitle.length; i++) {
+            html += 
+            '<td style="border: 2px solid black;" ' +
+            'class="song-td">' +
+            onloadtitle[i] +
+            '</td>';    
+        }
+    html += "</tr></table>"
+    el.innerHTML = html;
 }
 
 function RevealCompleteSongTitle () {    

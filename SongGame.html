@@ -33,28 +33,30 @@
                 <hr>
                 <div id='song-container'>
                     <div id="song-title-container">
-                        Song Title: 
+                        <span style="font-weight: bold;">Song Title:</span> 
                         <span id="song-title">
                         </span>
                     </div>
-                    <div id="randomized-letters-container">
-                        Randomized letters: 
-                        <span id="randomized-letters">
-                        </span>
-                    </div>
-                    <div id="artist-container">
-                        Artist:
-                        <span id="artist"></span>
-                    </div>
-                    <div id="album-container">
-                        Album:
-                        <span id="album">
-                        </span>
-                    </div>
-                    <div id="release-year-container">
-                        Release year:
-                        <span id="release-year">
-                        </span>
+                    <div id="hint-info">
+                        <div id="randomized-letters-container">
+                            Randomized letters: 
+                            <span id="randomized-letters">
+                            </span>
+                        </div>
+                        <div id="artist-container">
+                            Artist:
+                            <span id="artist"></span>
+                        </div>
+                        <div id="album-container">
+                            Album:
+                            <span id="album">
+                            </span>
+                        </div>
+                        <div id="release-year-container">
+                            Release year:
+                            <span id="release-year">
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -74,43 +76,43 @@
                         </tr>
                         <tr>
                             <td>
-                                <span onclick="ShowArtist()" id="show-artist-button" class="jc-button">
+                                <div onclick="ShowArtist()" id="show-artist-button" class="jc-button">
                                     Artist (40pts)
-                                </span>
+                                </div>
                             </td>
                             <td>
-                                <span onclick="ShowReleaseYear()" id="show-release-year-button" class="jc-button">
+                                <div onclick="ShowReleaseYear()" id="show-release-year-button" class="jc-button">
                                     Release year (10pts)
-                                </span>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span onclick="ShowRandomizedLetters()" id="show-randomized-letters-button" class="jc-button">
+                                <div onclick="ShowRandomizedLetters()" id="show-randomized-letters-button" class="jc-button">
                                     All letters randomized (20pts)
-                                </span>
+                                </div>
                             </td>
                             <td>
-                                <span onclick="ShowSpaces()" id="show-spaces-button" class="jc-button">
+                                <div onclick="ShowSpaces()" id="show-spaces-button" class="jc-button">
                                     Spaces (10pts)
-                                </span>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span onclick="ShowAlbum()" id="show-album-button" class="jc-button">
+                                <div onclick="ShowAlbum()" id="show-album-button" class="jc-button">
                                     Album (20pts)
-                                </span>
+                                </div>
                             </td>
                             <td>
-                                <span onclick="ShowLetterThatAppearsMost()" id="show-letter-that-appears-most-button" class="jc-button">
+                                <div onclick="ShowLetterThatAppearsMost()" id="show-letter-that-appears-most-button" class="jc-button">
                                     Letter that appears most (10pts)
-                                </span>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <div style="margin: 30px;">Place a letter (5pts)</div>
+                                <div style="margin: 30px; font-size: 20px;font-weight: bold;">Place a letter (5pts)</div>
                                 <div style="margin: 30px;">
                                     <span class="jc-button" onclick="PlaceLetter('A')" id="AButton">A</span>
                                     <span class="jc-button" onclick="PlaceLetter('B')" id="BButton">B</span>

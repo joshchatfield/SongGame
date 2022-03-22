@@ -17,7 +17,8 @@
 .jc-contents {
     text-align: center;
     margin: 0px auto 20px auto;
-    max-width: 700px;
+    max-width: 900px;
+    min-width: 700px;
     padding: 20px;
     box-shadow: 0px 0px 3px var(--main-bg-color);
     border-radius: 5px;
@@ -66,6 +67,11 @@
     display: inline;
 }
 
+#hint-info {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .hints-table {
     width: 100%;
     background: white;
@@ -76,7 +82,7 @@
 
 .hints-table th {
     padding: 15px 10px;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 20px;
 }
 
@@ -94,7 +100,7 @@
     font-weight: bold;
     border-radius: 3px;
     box-shadow: 0px 0px 3px black;
-    width: 100%;
+    max-width: 100%;
     border: 0px;
     cursor: pointer;
 }
