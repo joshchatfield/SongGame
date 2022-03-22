@@ -17,14 +17,18 @@ var Score = 100;
 var SongTds = document.getElementsByClassName("song-td");
 var MapDataCount = 0;
 
-//TODO: add all possible chars (puncuation and nums)
-var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXZ';
+//TODO: add all possible chars (puncuation and nums, and spaces)
+var alphabet =
+    'abcdefghijklmnopqrstuvwxyz' +
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+    '1234567890' +
+    ' ".,?!' + "'";
 
 function Encrypt(str) {
     var encryptedString = '';
     for(var i = 0; i < alphabet.length; i++){
         for(var t = 0; t < str.length; t++){
-            if(str[t].toUpperCase() == alphabet[i].toUpperCase()){
+            if(str[t] === alphabet[i]){
                 //TODO diff logic at end of alphabet
                 encryptedString += alphabet[i + 1];
             }
@@ -34,10 +38,11 @@ function Encrypt(str) {
 }
 
 function UnEncrypt(str) {
+    //TODO: preserve upper/lower case
     var unEncryptedString = '';
     for(var i = 0; i < alphabet.length; i++){
         for(var t = 0; t < str.length; t++){
-            if(str[t].toUpperCase() == alphabet[i].toUpperCase()){
+            if(str[t] === alphabet[i]){
                 //TODO diff logic at end beginning of alphabet
                 unEncryptedString += alphabet[i - 1];
             }
@@ -85,9 +90,9 @@ function StartNewGame () {
 }
 
 function OnLoad (){
-    console.log(UnEncrypt("bcd"));
-    console.log(Encrypt("bcd"));
-    console.log(UnEncrypt(Encrypt('bcd')));
+    console.log(UnEncrypt("bCd"));
+    console.log(Encrypt("bCd"));
+    console.log(UnEncrypt(Encrypt('bCd')));
     SetupModal();
     GrayOutAllButtonsExceptNewGame();
     SongTitleOnLoad();
