@@ -1,0 +1,26 @@
+{
+  "name": "songzie",
+  "version": "1.0.0",
+  "description": "song game",
+  "main": "Script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshchatfield/SongGame.git"
+  },
+  "keywords": [
+    "song",
+    "game"
+  ],
+  "author": "Josh Chatfield",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshchatfield/SongGame/issues"
+  },
+  "homepage": "https://github.com/joshchatfield/SongGame#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

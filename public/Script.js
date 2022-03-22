@@ -17,6 +17,41 @@ var Score = 100;
 var SongTds = document.getElementsByClassName("song-td");
 var MapDataCount = 0;
 
+//TODO: add all possible chars (puncuation and nums)
+var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXZ';
+
+function Encrypt(str) {
+    var encryptedString = '';
+    for(var i = 0; i < alphabet.length; i++){
+        for(var t = 0; t < str.length; t++){
+            if(str[t].toUpperCase() == alphabet[i].toUpperCase()){
+                //TODO diff logic at end of alphabet
+                encryptedString += alphabet[i + 1];
+            }
+        }
+    }
+    return encryptedString;
+}
+
+function UnEncrypt(str) {
+    var unEncryptedString = '';
+    for(var i = 0; i < alphabet.length; i++){
+        for(var t = 0; t < str.length; t++){
+            if(str[t].toUpperCase() == alphabet[i].toUpperCase()){
+                //TODO diff logic at end beginning of alphabet
+                unEncryptedString += alphabet[i - 1];
+            }
+        }
+    }
+    return unEncryptedString;
+}
+
+function notes() {
+    //returns "?example"
+    window.location.search
+}
+
+
 function InitializeGameVariables(){
     Song = "";
     Artist = "";
@@ -50,6 +85,9 @@ function StartNewGame () {
 }
 
 function OnLoad (){
+    console.log(UnEncrypt("bcd"));
+    console.log(Encrypt("bcd"));
+    console.log(UnEncrypt(Encrypt('bcd')));
     SetupModal();
     GrayOutAllButtonsExceptNewGame();
     SongTitleOnLoad();
