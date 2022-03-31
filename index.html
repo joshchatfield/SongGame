@@ -24,8 +24,8 @@
                         </tr>
                         <tr>
                             <td id="score-td" colspan="2">
-                                <span id="score-label">Current Score: </span>
-                                <span id="score">100</span>    
+                                <span id="score-label" class="large-text">Current Score: </span>
+                                <span id="score" class="large-text">100</span>    
                             </td>
                         </tr>
                     </table>
@@ -33,26 +33,26 @@
                 <hr>
                 <div id='song-container'>
                     <div id="song-title-container">
-                        <span style="font-weight: bold;">Song Title:</span> 
+                        <span class="large-text">Song Title:</span> 
                         <span id="song-title">
                         </span>
                     </div>
                     <div id="hint-info">
-                        <div id="randomized-letters-container">
+                        <div id="randomized-letters-container" class="medium-text">
                             Randomized letters: 
                             <span id="randomized-letters">
                             </span>
                         </div>
-                        <div id="artist-container">
+                        <div id="artist-container" class="medium-text">
                             Artist:
                             <span id="artist"></span>
                         </div>
-                        <div id="album-container">
+                        <div id="album-container" class="medium-text">
                             Album:
                             <span id="album">
                             </span>
                         </div>
-                        <div id="release-year-container">
+                        <div id="release-year-container" class="medium-text">
                             Release year:
                             <span id="release-year">
                             </span>
@@ -67,10 +67,10 @@
                 <div id='hints-container'>
                     <table class="hints-table">
                         <tr>
-                            <th>                                
+                            <th class="large-text">                                
                                 Major hints                              
                             </th>
-                            <th>
+                            <th class="large-text">
                                 Minor hints                               
                             </th>
                         </tr>
@@ -106,43 +106,101 @@
                             </td>
                             <td>
                                 <div onclick="ShowLetterThatAppearsMost()" id="show-letter-that-appears-most-button" class="jc-button">
-                                    Letter that appears most (10pts)
+                                    Most common letter (10pts)
                                 </div>
                             </td>
                         </tr>
+                    </table>
+                    <table class="hints-table">
                         <tr>
-                            <td colspan="2">
-                                <div style="margin: 30px; font-size: 20px;font-weight: bold;">Place a letter (5pts)</div>
-                                <div style="margin: 30px;">
-                                    <span class="jc-button" onclick="PlaceLetter('A')" id="AButton">A</span>
-                                    <span class="jc-button" onclick="PlaceLetter('B')" id="BButton">B</span>
-                                    <span class="jc-button" onclick="PlaceLetter('C')" id="CButton">C</span>
-                                    <span class="jc-button" onclick="PlaceLetter('D')" id="DButton">D</span>
-                                    <span class="jc-button" onclick="PlaceLetter('E')" id="EButton">E</span>
-                                    <span class="jc-button" onclick="PlaceLetter('F')" id="FButton">F</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('G')" id="GButton">G</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('H')" id="HButton">H</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('I')" id="IButton">I</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('J')" id="JButton">J</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('K')" id="KButton">K</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('L')" id="LButton">L</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('M')" id="MButton">M</span>    
-                                </div>
-                                <div style="margin: 30px;">
-                                    <span class="jc-button" onclick="PlaceLetter('N')" id="NButton">N</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('O')" id="OButton">O</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('P')" id="PButton">P</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('Q')" id="QButton">Q</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('R')" id="RButton">R</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('S')" id="SButton">S</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('T')" id="TButton">T</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('U')" id="UButton">U</span>    
-                                    <span class="jc-button" onclick="PlaceLetter('V')" id="VButton">V</span>
-                                    <span class="jc-button" onclick="PlaceLetter('W')" id="WButton">W</span>
-                                    <span class="jc-button" onclick="PlaceLetter('X')" id="XButton">X</span>
-                                    <span class="jc-button" onclick="PlaceLetter('Y')" id="YButton">Y</span>
-                                    <span class="jc-button" onclick="PlaceLetter('Z')" id="ZButton">Z</span>
-                                </div>
+                            <th colspan="8">
+                                <div class="large-text">Place a letter (5pts)</div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('A')" id="AButton">A</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('B')" id="BButton">B</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('C')" id="CButton">C</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('D')" id="DButton">D</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('E')" id="EButton">E</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('F')" id="FButton">F</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('G')" id="GButton">G</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('H')" id="HButton">H</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('I')" id="IButton">I</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('J')" id="JButton">J</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('K')" id="KButton">K</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('L')" id="LButton">L</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('M')" id="MButton">M</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('N')" id="NButton">N</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('O')" id="OButton">O</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('P')" id="PButton">P</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('Q')" id="QButton">Q</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('R')" id="RButton">R</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('S')" id="SButton">S</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('T')" id="TButton">T</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('U')" id="UButton">U</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('V')" id="VButton">V</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('W')" id="WButton">W</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('X')" id="XButton">X</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('Y')" id="YButton">Y</div>
+                            </td>
+                            <td>
+                                <div class="jc-button" onclick="PlaceLetter('Z')" id="ZButton">Z</div>
                             </td>
                         </tr>
                     </table>

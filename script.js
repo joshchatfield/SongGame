@@ -17,6 +17,8 @@ var Score = 100;
 var SongTds = document.getElementsByClassName("song-td");
 var MapDataCount = 0;
 
+//TODO: "do you know the most well know songs?"
+//TODO: send song to a friend
 //TODO: add all possible chars (puncuation and nums, and spaces)
 var alphabet =
     'abcdefghijklmnopqrstuvwxyz' +
@@ -240,6 +242,7 @@ function GrayOutAllButtonsExceptNewGame(){
 }
 
 function Guess () {
+    //TODO: submit guess on enter
     if(!IsGameOver() &&
         RefreshScore(-1)){
         var guess = document.getElementById("GuessInput").value;

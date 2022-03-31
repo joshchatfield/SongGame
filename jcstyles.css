@@ -82,8 +82,6 @@
 
 .hints-table th {
     padding: 15px 10px;
-    font-weight: bold;
-    font-size: 20px;
 }
 
 .hints-table td {
@@ -96,7 +94,7 @@
     background: var(--main-bg-color);
     text-decoration: none;
     color: white;
-    font-size: 20px;
+    font-size: 32px;
     font-weight: bold;
     border-radius: 3px;
     box-shadow: 0px 0px 3px black;
@@ -105,6 +103,25 @@
     cursor: pointer;
 }
 
+.small-text {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.medium-text {    
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.large-text {    
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.title-text {    
+    font-weight: bold;
+    font-size: 50px;
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
