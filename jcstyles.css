@@ -182,7 +182,7 @@
 
   /* only appears on bigger desktops */
   @media screen {
-    @media (min-width:900px) {
+    @media (min-width:1000px) {
         .page-title-table th {
             font-size: 30px;
         }
